@@ -32,3 +32,7 @@ for test_case in range(1, T + 1):
 
     dfs(0, 0)
     print(f'#{test_case} {ans}')
+
+#1 63
+#2 78
+#3 129
