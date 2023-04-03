@@ -15,7 +15,7 @@ def bfs(start, end):
 
     while q :               # q가 빌때까지 탐색을 반복하기
         c = q.popleft()     # bfs에서 queue.pop(0)하는 것과 동일한 수행,
-        # 여기서 pop은 O(n), popleft는 O(1)이 되어서 시간이 줄어듦.
+        # 여기서 시간복잡도를 살펴보면, pop은 O(n), popleft는 O(1)이 되기 때문에 시간 차이가 존재할 수밖에 없음.
         if c == end :       # q에서 꺼낸 답이 최종정답일때, 정답을 찾으면 stop
             return visited[c]-1     # 이미 시작할때 queue에 담으면서+1 로 시작했으니까,
 
