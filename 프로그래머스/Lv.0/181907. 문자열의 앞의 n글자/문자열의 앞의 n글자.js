@@ -1,5 +1,7 @@
 function solution(my_string, n) {
-    // let answer = '';
-    return my_string.substring(0, n);
-    // return answer;
+    let answer = '';
+    for (let i = 0; i < n; i++ ) {
+      answer += my_string[i];
+    }
+    return answer;    
 }
