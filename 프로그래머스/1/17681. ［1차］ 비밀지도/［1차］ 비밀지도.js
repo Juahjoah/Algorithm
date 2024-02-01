@@ -1,9 +1,13 @@
 function solution(n, arr1, arr2) {
-    // var answer = [];
-    // return answer;
-    return arr1.map((v, i) => addZero(n, (v | arr2[i]).toString(2)).replace(/1|0/g, a => +a ? '#' : ' '));
-}
+    return arr1.map((v, i) => {
+        const binaryString = (v | arr2[i]).toString(2);
+        let paddedBinaryString = binaryString.padStart(n, '0');
+        let answer = '';
 
-const addZero = (n, s) => {
-    return '0'.repeat(n - s.length) + s;
+        for (let i of paddedBinaryString) {
+            answer += i === '1' ? '#' : ' ';
+        }
+
+        return answer;
+    });
 }
