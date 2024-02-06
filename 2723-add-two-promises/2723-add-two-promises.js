@@ -4,26 +4,24 @@
  * @return {Promise}
  */
 var addTwoPromises = async function(promise1, promise2) {
-  try {
-    const value1 = await promise1;
-    const value2 = await promise2;
+  return Promise.all ([promise1, promise2]).then(values => {
+    const sum = values[0] + values[1];
       
-    return value1 + value2
-  } 
-  catch(error) {
-    throw error;
-  }
+    return sum;
+  });
     
     
     
-  
-//   let newMyPromies = new Promise ((resolve, result) => {
-//     setTimeout(() => resolve("완료"), 1000);
-    
-//     return promise1 + promise2
+//   try {
+//     const value1 = await promise1;
+//     const value2 = await promise2;
       
-//   });
-  
+//     return value1 + value2
+//   } 
+//   catch(error) {
+//     throw error;
+//   }
+    
 };
 
 /**
