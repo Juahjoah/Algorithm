@@ -1,0 +1,7 @@
+-- 코드를 입력하세요
+SELECT ANIMAL_ID
+FROM ANIMAL_INS
+WHERE NAME IS NOT NULL;
+
+-- 기본값 _ 오름차순
+-- ORDER BY 
