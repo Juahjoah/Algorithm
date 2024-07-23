@@ -1,5 +1,7 @@
-def usermatch(user, banned):
-    # user와 banned가 일치하는지 확인하는 함수
+from itertools import permutations
+
+# user와 banned가 일치하는지 확인하는 함수
+def userMatch(user, banned):
     if len(user) != len(banned):
         return False
     for u, b in zip(user, banned):
@@ -9,22 +11,30 @@ def usermatch(user, banned):
             return False
     return True
 
-
-def backtrack(index, banned_id, user_id, current_set, result):
-    # 모든 banned_id를 검사한 경우 결과에 추가
-    if index == len(banned_id):
-        result.add(frozenset(current_set))
-        return
-
-    for user in user_id:
-        # 현재 선택된 user가 current_set에 없고, banned_id와 일치하면 추가
-        if user not in current_set and usermatch(user, banned_id[index]):
-            current_set.add(user)
-            backtrack(index + 1, banned_id, user_id, current_set, result)
-            current_set.remove(user)
-
-
 def solution(user_id, banned_id):
-    result = set()  # 가능한 제재 아이디 조합을 저장할 집합
-    backtrack(0, banned_id, user_id, set(), result)  # 백트래킹 시작
-    return len(result)  # 가능한 경우의 수 반환
+    possible_matches = []
+    
+    # 각 banned_id에 대해 매칭될 수 있는 user_id 찾기
+    for b in banned_id:
+        matches = []
+        for u in user_id:
+            if userMatch(u, b):
+                matches.append(u)
+        possible_matches.append(matches)
+    
+    # 가능한 모든 경우의 수를 찾기 위해 permutations 사용
+    allCases = permutations(user_id, len(banned_id))
+    
+    validCases = set()
+    
+    for case in allCases:
+        match = True
+        for i in range(len(banned_id)):
+            if not userMatch(case[i], banned_id[i]):
+                match = False
+                break
+        if match:
+            validCases.add(frozenset(case))
+    
+    return len(validCases)
+
