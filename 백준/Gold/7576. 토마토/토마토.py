@@ -1,45 +1,40 @@
-
 from collections import deque
 
-# 입력 값을 input으로 받기
-M, N = map(int, input().split())
-inputArr = [list(map(int, input().split())) for _ in range(N)]
+dx = [1, 0, -1, 0]
+dy = [0, -1, 0, 1]
 
-# 배열을 확인하기 위한 값
-dx = [0, 1, 0, -1]
-dy = [1, 0, -1, 0]
-
-# answerArr = inputArr
-
-def BFS():
-    days = -1            # 최소 일수를 계산하기
+def BFS(M, N ,input_arr):
+    answer = -1                        # 이동 횟수
     queue = deque()
-
-    # 최초 익은 토마토 (1) 값 추가하기
+    # 시작점 담기 : 1이 시작점
     for i in range(N):
         for j in range(M):
-            if inputArr[i][j] == 1:
+            if input_arr[i][j] == 1:
                 queue.append((i, j))
-    # queue를 돌면서 확인하기
-    while queue:
-        days += 1 # 날짜를 하나씩 추가하기
+
+    while queue :
+        answer += 1                    # 날짜 추가
         for _ in range(len(queue)):
-            x, y = queue.popleft()  # 같은 노드에 있는 작업을 한 번에 수행하기
+            x, y = queue.popleft()
 
-            # 토마토 익히기
+            # 네 방향을 순회하면서 0을 1로 변경, 횟수 추가
             for i in range(4):
-                nx, ny = x + dx[i], y + dy[i]
-                if 0 <= nx < N and 0 <= ny < M and inputArr[nx][ny] == 0 :
-                    inputArr[nx][ny] = 1
-                    queue.append((nx,ny))
+                nx = x + dx[i]
+                ny = y + dy[i]
 
-    # 모든 토마토가 익었는지 마지막으로 확인하기
-    for k in range(N) :
-        for l in range(M):
-            if inputArr[k][l] == 0:
-                return -1   # 안 익은 토마토가 존재하는 경우
-    return days
+                if 0 <= nx < N and 0 <= ny < M and input_arr[nx][ny] == 0 and input_arr[nx][ny] != -1 :
+                    input_arr[nx][ny] = 1
+                    queue.append((nx, ny))
 
-# 함수 실행 및 최소 일수 출력하기
-print(BFS())
+    # 모든 토마토가 익어있다면 0을 출력, 전체 토마토가 익지 못한다면 -1을 출력
+    for i in range(N):
+        for j in range(M):
+            if input_arr[i][j] == 0:
+                return -1
+    return answer
 
+
+M, N = map(int, input().split())
+input_arr = [list(map(int, input().split())) for _ in range(N)]
+
+print(BFS(M, N ,input_arr))
