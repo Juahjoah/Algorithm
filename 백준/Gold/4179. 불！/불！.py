@@ -36,15 +36,17 @@ def BFS(R, C, input_arr):
             for d in range(4):
                 nx, ny = x + dx[d], y + dy[d]
 
-                # if 0 <= nx < R and 0 <= ny < C and input_arr[nx][ny] == "." and input_arr[nx][ny] != "F:
-                #     input_arr[nx][ny] == "J"
-                #     route_queue.append((nx, ny))
-                # 코드 참고
-                if 0 <= nx < R and 0 <= ny < C:
-                    if input_arr[nx][ny] == ".":
-                        input_arr[nx][ny] = "J"
-                        route_queue.append((nx, ny))
+                # 메모리 초과
+                if 0 <= nx < R and 0 <= ny < C and input_arr[nx][ny] == "." and input_arr[nx][ny] != "F":
+                    input_arr[nx][ny] = "J"
+                    route_queue.append((nx, ny))
 
+                # if 0 <= nx < R and 0 <= ny < C:
+                #     if input_arr[nx][ny] == ".":
+                #         input_arr[nx][ny] = "J"
+                #         route_queue.append((nx, ny))
+
+                # 코드 참고
                 # 탈출에 성공 = 미로의 경계선을 벗어났다!
                 if 0 > nx or nx >= R or 0 > ny or ny >= C:
                     return answer
