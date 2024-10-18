@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 
 N = int(input())
 answer = 0        # 누적 점수를 담을 변수
