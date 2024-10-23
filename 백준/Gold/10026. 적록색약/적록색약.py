@@ -1,6 +1,3 @@
-import sys
-input = sys.stdin.readline
-
 from collections import deque
 
 dx = [1, 0, -1, 0]
