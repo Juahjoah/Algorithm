@@ -1,14 +1,6 @@
-N = int(input())
-A = list(map(int, input().split()))
-A.sort()
-
-M = int(input())
-input_list = list(map(int, input().split()))
 
 
-for m in input_list:
-    left = 0
-    right = N - 1
+def binary_search(left, right):
 
     while left <= right:
         mid = (left+right) // 2
@@ -26,3 +18,21 @@ for m in input_list:
         print(1)
     else:
         print(0)
+
+
+
+
+
+N = int(input())
+A = list(map(int, input().split()))
+A.sort()
+
+M = int(input())
+input_list = list(map(int, input().split()))
+
+
+for m in input_list:
+    left = 0
+    right = N - 1
+
+    binary_search(left, right)
