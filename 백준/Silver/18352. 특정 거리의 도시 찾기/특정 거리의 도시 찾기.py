@@ -1,4 +1,6 @@
 from collections import deque
+import sys
+input = sys.stdin.readline
 
 def BFS(K, X):
     # 최단 거리 탐색
