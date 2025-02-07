@@ -1,4 +1,3 @@
-
 dx = [1, 0, -1, 0]
 dy = [0, -1, 0, 1]
 
@@ -7,7 +6,7 @@ def dfs(crews, y_cnt):
     if len(crews) == 7:
         check_crews = tuple(sorted(crews, key = lambda x:(x[0], x[1])))
         if check_crews not in answer_list:
-            answer_list.append(check_crews)
+            answer_list.add(check_crews)
             global answer
             answer += 1
         return
@@ -36,7 +35,7 @@ board = [list(input()) for _ in range(5)]
 
 visited = [[False] * 5 for _ in range(5)]
 answer = 0
-answer_list = []
+answer_list = set()
 
 for i in range(5):
     for j in range(5):
