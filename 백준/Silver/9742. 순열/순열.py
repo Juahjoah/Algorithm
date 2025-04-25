@@ -8,14 +8,12 @@ while True:
         cnt = 0
         flag = False
 
-        for i in permutations(text, len(text)):
+        for p in permutations(text, len(text)):
             cnt += 1
-            if cnt == num:
-                print(text, num, '=', ''.join(i))
+            if cnt == num :
+                print(text, num, '=', ''.join(p))
                 flag = True
                 break
-            if cnt > num - 1:
-                print('No permutation')
 
         if not flag:
             print(text, num, '=', 'No permutation')
