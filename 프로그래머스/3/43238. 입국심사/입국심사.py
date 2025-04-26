@@ -1,24 +1,25 @@
 def solution(n, times):
-    left = 0
-    right = max(times) * n
+    answer = 0
     
-    answer = right
+    start = 0
+    end = max(times) * n
     
-    while left <= right:
-        mid = (left + right) // 2
+    while start <= end:
+        # mid = mid 시간 동안 처리할 수 있는 사람
+        mid = (start + end) // 2
+        total = 0
         
-        # mid 시간 동안 처리할 수 있는 사람
-        total_time = 0
         for t in times:
-            total_time += mid // t
-            # n을 초과했다면 중지
-            if total_time >= n:
+            # total = 감당할 수 있는 사람 수
+            total += mid // t
+            # 심사해야 하는 인원보다 많아졌을 때 break
+            if total >= n:
                 break
                 
-        if total_time >= n:
+        if total >= n:
             answer = mid
-            right = mid - 1
+            end = mid - 1
         else:
-            left = mid + 1
-
+            start = mid + 1
+            
     return answer
