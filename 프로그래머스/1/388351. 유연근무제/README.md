@@ -1,10 +1,10 @@
 # [level 1] 유연근무제 - 388351 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/388351?language=python3) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/388351) 
 
 ### 성능 요약
 
-메모리: 9.39 MB, 시간: 3.11 ms
+메모리: 35.8 MB, 시간: 3.18 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2026년 03월 23일 23:23:46
+2026년 05월 08일 21:44:51
 
 ### 문제 설명
 
