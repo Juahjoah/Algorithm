@@ -1,29 +1,60 @@
 function solution(n, w, num) {
     let answer = 0;
     
-    let row = Math.floor((num - 1) / w);
-    let col;
+    const boxList = [];
+    let flagBoxList = [];
+    let flag = true;
     
-    if (row % 2 === 0) {
-        col = (num - 1) % w
-    } else {
-        col = w - 1 - ((num - 1) % w)
-    }
-    
-    // 본인의 열보다 위에 있는 상자의 갯수를 세기
-    for (let r = row + 1; r < Math.ceil(n / w); r++) {
-        let boxIdx;
-        if (r % 2 === 0) {
-            boxIdx = r * w + (col + 1);
-        } else {
-            boxIdx = (r + 1) * w - col;
-        }
+    for (let i = 1; i <= n; i++) {
+        flagBoxList.push(i);
         
-        if (boxIdx <= n) {
-            answer += 1;
+        if (flagBoxList.length === w) {
+            if (!flag) {
+                flagBoxList.reverse();
+            }
+            
+            boxList.push(flagBoxList);
+            flag = !flag
+            flagBoxList = [];
         }
     }
     
-    // 본인 값 더해서 출력
-    return answer + 1;
+    // 마지막 줄이 w개 미만으로 남은 경우
+    if (flagBoxList.length > 0) {
+        const listLength = flagBoxList.length;
+        
+        if (flag) {
+            while (flagBoxList.length < w) {
+                flagBoxList.push(0);
+            }
+            boxList.push(flagBoxList);
+        } else {
+            flagBoxList.reverse();
+            const finalRow = Array(w - listLength).fill(0).concat(flagBoxList);
+            boxList.push(finalRow);
+        }
+    }
+
+    // num의 위치 찾기
+    let targetRow = 0;
+    let targetCol = 0;
+    
+    for (let r = 0; r < boxList.length; r++) {
+        const col = boxList[r].indexOf(num);
+        
+        if (col !== -1) {
+            targetRow = r;
+            targetCol = col;
+            break;
+        }
+    }
+    
+    // 같은 열에 있는 상자 개수 세기
+    for (let r = targetRow; r < boxList.length; r++ ) {
+        if (boxList[r][targetCol] !== 0) {
+            answer++;
+        }
+    }
+    
+    return answer;
 }
